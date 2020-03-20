@@ -64,8 +64,6 @@ class MatchCVC: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //        print(matchArray.count)
         return matchArray.count
-//        return name.count
-//        return 9
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -84,6 +82,7 @@ class MatchCVC: UICollectionViewController {
         
 
        let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "MatchCell", for: indexPath)  as! MatchCVCell
+        
         cell.contryNameLabel.text = matchArray[indexPath.row].username
         
         let ava = matchArray[indexPath.row].object(forKey: "avaHeadImage") as! AVFile

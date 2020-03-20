@@ -29,6 +29,7 @@
 		34C27932242265D30027BFAE /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 34C2792C242265D30027BFAE /* 3.jpg */; };
 		34C279372423ABE80027BFAE /* HisDetailPageCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C279362423ABE80027BFAE /* HisDetailPageCVC.swift */; };
 		34C279392423AD740027BFAE /* HisDetailPageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C279382423AD740027BFAE /* HisDetailPageHeader.swift */; };
+		34C2793C2424CAF40027BFAE /* StoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C2793B2424CAF40027BFAE /* StoryTVC.swift */; };
 		FB567031055C36D4C1022D02 /* Pods_SoulMateA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F89C09B9C172964CBB8024BA /* Pods_SoulMateA.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		34C2792C242265D30027BFAE /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
 		34C279362423ABE80027BFAE /* HisDetailPageCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HisDetailPageCVC.swift; sourceTree = "<group>"; };
 		34C279382423AD740027BFAE /* HisDetailPageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HisDetailPageHeader.swift; sourceTree = "<group>"; };
+		34C2793B2424CAF40027BFAE /* StoryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTVC.swift; sourceTree = "<group>"; };
 		7604A04F19E747172BF1EE93 /* Pods-SoulMateA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoulMateA.debug.xcconfig"; path = "Target Support Files/Pods-SoulMateA/Pods-SoulMateA.debug.xcconfig"; sourceTree = "<group>"; };
 		DB44437B8621E4C94D08B634 /* Pods-SoulMateA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoulMateA.release.xcconfig"; path = "Target Support Files/Pods-SoulMateA/Pods-SoulMateA.release.xcconfig"; sourceTree = "<group>"; };
 		F89C09B9C172964CBB8024BA /* Pods_SoulMateA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoulMateA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,12 +125,11 @@
 		34C279102422657E0027BFAE /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				34C2793A2424C85D0027BFAE /* 故事 */,
 				34C279352423A9B80027BFAE /* 我的 */,
 				34C279342423A9A70027BFAE /* 消息 */,
 				34C279332423A9910027BFAE /* 匹配 */,
-				34C279162422657E0027BFAE /* LoginVC.swift */,
-				34C279172422657E0027BFAE /* SignUpVC.swift */,
-				34C279182422657E0027BFAE /* GuideVC.swift */,
+				34C2793D2424CD410027BFAE /* 登陆注册引导页 */,
 				34C279152422657E0027BFAE /* MyTabBarController.swift */,
 			);
 			path = "View Controllers";
@@ -186,6 +187,24 @@
 				34C279142422657E0027BFAE /* MyDetailPageCVC.swift */,
 			);
 			path = "我的";
+			sourceTree = "<group>";
+		};
+		34C2793A2424C85D0027BFAE /* 故事 */ = {
+			isa = PBXGroup;
+			children = (
+				34C2793B2424CAF40027BFAE /* StoryTVC.swift */,
+			);
+			path = "故事";
+			sourceTree = "<group>";
+		};
+		34C2793D2424CD410027BFAE /* 登陆注册引导页 */ = {
+			isa = PBXGroup;
+			children = (
+				34C279182422657E0027BFAE /* GuideVC.swift */,
+				34C279162422657E0027BFAE /* LoginVC.swift */,
+				34C279172422657E0027BFAE /* SignUpVC.swift */,
+			);
+			path = "登陆注册引导页";
 			sourceTree = "<group>";
 		};
 		D76A6CD21D966E46810BD2C8 /* Pods */ = {
@@ -324,6 +343,7 @@
 				34C279232422657E0027BFAE /* MatchCVCell.swift in Sources */,
 				34C279372423ABE80027BFAE /* HisDetailPageCVC.swift in Sources */,
 				34C2791E2422657E0027BFAE /* MyDetailPageCVC.swift in Sources */,
+				34C2793C2424CAF40027BFAE /* StoryTVC.swift in Sources */,
 				34C279392423AD740027BFAE /* HisDetailPageHeader.swift in Sources */,
 				34C279202422657E0027BFAE /* LoginVC.swift in Sources */,
 				34C2792E242265D30027BFAE /* Constants.swift in Sources */,

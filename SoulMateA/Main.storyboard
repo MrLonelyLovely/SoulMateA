@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aIJ-Ry-tgf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aXE-jf-sLb">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -347,7 +347,7 @@
         <!--故事-->
         <scene sceneID="J1y-o6-LFy">
             <objects>
-                <tableViewController id="I4q-cw-FVs" sceneMemberID="viewController">
+                <tableViewController id="I4q-cw-FVs" customClass="StoryTVC" customModule="SoulMateA" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dcv-qz-9uC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -367,11 +367,36 @@
                             <outlet property="delegate" destination="I4q-cw-FVs" id="BO4-Vw-6BX"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="故事" id="Cwd-Y1-wPT"/>
+                    <navigationItem key="navigationItem" title="故事" id="Cwd-Y1-wPT">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="camera" id="Maq-Id-BNb">
+                            <connections>
+                                <action selector="cameraButtonTapped:" destination="I4q-cw-FVs" id="wNy-Ob-FpI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cameraButton" destination="Maq-Id-BNb" id="4RA-zy-xxw"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zM5-1J-BNw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="73" y="2604"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="lMV-cY-VTl">
+            <objects>
+                <viewController id="IS4-NL-62Z" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nsS-RM-5WJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="LiC-Ns-U6w"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Lbx-k3-8iZ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ycx-OS-eK8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="958" y="2604"/>
         </scene>
         <!--MineVC-->
         <scene sceneID="YTb-TP-Dyj">
