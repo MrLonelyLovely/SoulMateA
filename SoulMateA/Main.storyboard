@@ -371,6 +371,7 @@
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="camera" id="Maq-Id-BNb">
                             <connections>
                                 <action selector="cameraButtonTapped:" destination="I4q-cw-FVs" id="wNy-Ob-FpI"/>
+                                <segue destination="IS4-NL-62Z" kind="show" id="cTo-71-xSV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -382,21 +383,59 @@
             </objects>
             <point key="canvasLocation" x="73" y="2604"/>
         </scene>
-        <!--View Controller-->
+        <!--UploadVC-->
         <scene sceneID="lMV-cY-VTl">
             <objects>
-                <viewController id="IS4-NL-62Z" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="IS4-NL-62Z" customClass="UploadVC" customModule="SoulMateA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nsS-RM-5WJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4dU-Zb-L1K">
+                                <rect key="frame" x="30" y="74" width="315" height="305"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="写点什么吧！" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mFw-He-53P">
+                                        <rect key="frame" x="0.0" y="0.0" width="315" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="lvg-Qg-B5L"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto.png" translatesAutoresizingMaskIntoConstraints="NO" id="JM0-he-GTI">
+                                        <rect key="frame" x="0.0" y="45" width="315" height="260"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="260" id="43d-fK-077"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="4dU-Zb-L1K" firstAttribute="leading" secondItem="LiC-Ns-U6w" secondAttribute="leading" constant="30" id="hdi-js-4su"/>
+                            <constraint firstItem="4dU-Zb-L1K" firstAttribute="top" secondItem="LiC-Ns-U6w" secondAttribute="top" constant="30" id="pyw-ER-Adw"/>
+                            <constraint firstItem="LiC-Ns-U6w" firstAttribute="trailing" secondItem="4dU-Zb-L1K" secondAttribute="trailing" constant="30" id="zps-CA-gPY"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="LiC-Ns-U6w"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Lbx-k3-8iZ"/>
+                    <navigationItem key="navigationItem" id="Lbx-k3-8iZ">
+                        <barButtonItem key="rightBarButtonItem" title="发布" style="plain" id="fST-DO-cQD">
+                            <connections>
+                                <segue destination="Mn6-WS-EZ9" kind="unwind" identifier="upload" unwindAction="unwindToStoryTVCWithUnwindSegue:" id="2Mp-kB-VCR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="postPictureImageView" destination="JM0-he-GTI" id="VYh-HA-yAf"/>
+                        <outlet property="postTextTextFiled" destination="mFw-He-53P" id="xZN-mX-LqE"/>
+                        <outlet property="uploadButton" destination="fST-DO-cQD" id="yzw-lX-HoB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ycx-OS-eK8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Mn6-WS-EZ9" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="958" y="2604"/>
+            <point key="canvasLocation" x="817" y="2604"/>
         </scene>
         <!--MineVC-->
         <scene sceneID="YTb-TP-Dyj">
@@ -952,6 +991,7 @@
     </scenes>
     <resources>
         <image name="11.png" width="240" height="240"/>
+        <image name="defaultPhoto.png" width="1080" height="1080"/>
         <image name="ellipses.bubble" catalog="system" width="64" height="54"/>
         <image name="ellipses.bubble.fill" catalog="system" width="64" height="54"/>
         <image name="person" catalog="system" width="64" height="58"/>

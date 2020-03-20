@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StoryTVC: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class StoryTVC: UITableViewController{
 
     var followerArray = [AVUser]()
     var postPictureArray = [AVFile]()
@@ -66,46 +66,16 @@ class StoryTVC: UITableViewController, UIImagePickerControllerDelegate, UINaviga
     
 
     @IBAction func cameraButtonTapped(_ sender: Any) {
-        
-//        let alert = UIAlertController(title: "Oops!!!", message: "该用户名已被注册，请使用其他的用户名!", preferredStyle: .alert)
-//        let ok = UIAlertAction(title: "好的惹", style: .cancel) { (action) in
-//            self.userNameTextField.text = nil
-//            self.passwordTextField.text = nil
-//        }
-//        alert.addAction(ok)
-//        self.present(alert, animated: true, completion: nil)
-        
-//        let alertSheet = UIAlertController(title: "", message: "拍摄", preferredStyle: .actionSheet)
-        
-        let imageTaker = UIImagePickerController()
-        imageTaker.delegate = self
-        
-//        let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
-        let actionSheet = UIAlertController()
-        
-        actionSheet.addAction(UIAlertAction(title: "拍摄", style: .default, handler: {(action:UIAlertAction) in
-            if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                imageTaker.sourceType = .camera
-                self.present(imageTaker, animated: true, completion: nil)
-            } else {
-                print("Camera not availble")
-            }
-            
-        }))
-        
-        actionSheet.addAction(UIAlertAction(title: "相册", style: .default, handler: {(action:UIAlertAction) in
-            imageTaker.sourceType = .photoLibrary
-            self.present(imageTaker, animated: true, completion: nil)
-        }))
-        
-        actionSheet.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-        
-        //不是imageTaker，注意了
-        self.present(actionSheet, animated: true, completion: nil)
-        
+   
     }
     
-   
+    //MARK: - 暴风哭泣 这个方法不是写在UploadVC.swift文件中的，而是写在这里的！！！！！
+    @IBAction func unwindToStoryTVC(unwindSegue: UIStoryboardSegue) {
+        print("数据传过来啦！")
+        let view = unwindSegue.source as! UploadVC
+        
+        
+    }
     
     /*
     // Override to support conditional editing of the table view.
