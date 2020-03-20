@@ -1,0 +1,81 @@
+PODS:
+  - Alamofire (5.0.4)
+  - AVOSCloud (7.3.2)
+  - AVOSCloudCrashReporting (7.3.2):
+    - AVOSCloud (= 7.3.2)
+    - AVOSCloudCrashReporting/_ARC (= 7.3.2)
+    - AVOSCloudCrashReporting/_NOARC (= 7.3.2)
+  - AVOSCloudCrashReporting/_ARC (7.3.2):
+    - AVOSCloud (= 7.3.2)
+    - AVOSCloudCrashReporting/_NOARC (= 7.3.2)
+  - AVOSCloudCrashReporting/_NOARC (7.3.2):
+    - AVOSCloud (= 7.3.2)
+  - AVOSCloudIM (7.3.2):
+    - AVOSCloud (= 7.3.2)
+    - AVOSCloudIM/_ARC (= 7.3.2)
+    - AVOSCloudIM/_NOARC (= 7.3.2)
+  - AVOSCloudIM/_ARC (7.3.2):
+    - AVOSCloud (= 7.3.2)
+    - AVOSCloudIM/_NOARC (= 7.3.2)
+  - AVOSCloudIM/_NOARC (7.3.2):
+    - AVOSCloud (= 7.3.2)
+  - GRDB.swift (4.11.0):
+    - GRDB.swift/standard (= 4.11.0)
+  - GRDB.swift/standard (4.11.0)
+  - LeanCloud (17.5.2):
+    - LeanCloud/RTM (= 17.5.2)
+  - LeanCloud/Foundation (17.5.2):
+    - Alamofire (~> 5.0)
+  - LeanCloud/RTM (17.5.2):
+    - GRDB.swift (~> 4.9)
+    - LeanCloud/Foundation (= 17.5.2)
+    - Starscream (~> 3.1)
+    - SwiftProtobuf (~> 1.8)
+  - MJExtension (3.2.1)
+  - SDWebImage (5.6.1):
+    - SDWebImage/Core (= 5.6.1)
+  - SDWebImage/Core (5.6.1)
+  - Starscream (3.1.1)
+  - SVProgressHUD (2.2.5)
+  - SwiftProtobuf (1.8.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.0)
+  - AVOSCloud (<= 12.1.2)
+  - AVOSCloudCrashReporting
+  - AVOSCloudIM
+  - LeanCloud (~> 17.5.2)
+  - MJExtension (~> 3.2.1)
+  - SDWebImage (~> 5.6.1)
+  - SVProgressHUD (~> 2.2.5)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AVOSCloud
+    - AVOSCloudCrashReporting
+    - AVOSCloudIM
+    - GRDB.swift
+    - LeanCloud
+    - MJExtension
+    - SDWebImage
+    - Starscream
+    - SVProgressHUD
+    - SwiftProtobuf
+
+SPEC CHECKSUMS:
+  Alamofire: 0fe5fd24b4298dc377a6550da7d5f1b30e286fcb
+  AVOSCloud: 8a18125408bac1fc73c19ceb897db4ec4e0e6044
+  AVOSCloudCrashReporting: 12f4677508eac413f6c80f53bc7172b4210de1a8
+  AVOSCloudIM: dc24560259042bb84dd318a31b71ca858fccb6fe
+  GRDB.swift: 22e9d04cb732dfa9fa4440bc0bbb069ee8195183
+  LeanCloud: cbb1c70dbc9a858992e69510d17ba716695e69f5
+  MJExtension: 635f2c663dcb1bf76fa4b715b2570a5710aec545
+  SDWebImage: 7edb9c3ea661e77a66661f7f044de8c1b55d1120
+  Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftProtobuf: 2cbd9409689b7df170d82a92a33443c8e3e14a70
+
+PODFILE CHECKSUM: a2a014a2c4570fa568db12ffdc67baa58878562d
+
+COCOAPODS: 1.7.3
