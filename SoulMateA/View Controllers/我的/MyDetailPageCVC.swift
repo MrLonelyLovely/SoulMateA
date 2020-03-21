@@ -8,8 +8,6 @@
 
 import UIKit
 
-//private let reuseIdentifier = "Cell"
-
 class MyDetailPageCVC: UICollectionViewController {
     
     //刷新控件
@@ -30,9 +28,6 @@ class MyDetailPageCVC: UICollectionViewController {
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-//        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         //设置refresher控件到集合视图中
         refresher = UIRefreshControl()

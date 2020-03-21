@@ -15,8 +15,8 @@ class MatchCVC: UICollectionViewController {
 
 //    let name: [String] = ["usa","china","uk","japan","mexico","india"]
     var matchArray = [AVUser]()
-    
-//    var
+//    var hisuser:AVUser?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -102,6 +102,7 @@ class MatchCVC: UICollectionViewController {
 //        print("Selected Contry: \(name[indexPath.row])")
         
         mayWillMatchUser = matchArray[indexPath.row]
+//        hisuser = matchArray[indexPath.row]
     }
     
     

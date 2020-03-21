@@ -8,22 +8,34 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
 class HisDetailPageCVC: UICollectionViewController {
 
     var user:AVUser?
     
+    //刷新控件
+    var refresher: UIRefreshControl!
+    
+    //每页载入帖子（图片）的数量
+    var page: Int = 12
+    
+    var postIdArray = [String]()
+    var postPictureArray = [AVFile]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //设置集合视图在垂直方向上有反弹的效果，否则不能加载刷新控件
+        self.collectionView?.alwaysBounceVertical = true
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+        //设置refresher控件到集合视图中
+        refresher = UIRefreshControl()
+        refresher.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
+        collectionView?.addSubview(refresher)
+        
+        loadPosts()
     }
 
     /*
@@ -46,7 +58,7 @@ class HisDetailPageCVC: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return postPictureArray.count
     }
 
     //有了这个方法才会有UI元素显示在屏幕上
@@ -67,43 +79,53 @@ class HisDetailPageCVC: UICollectionViewController {
         
         return header
     }
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
     
-        // Configure the cell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HisPostCell", for: indexPath) as! HisPostCell
+        
+        postPictureArray[indexPath.row].getDataInBackground { (data:Data?, error:Error?) in
+            if error == nil {
+                cell.postPictureImageView.image = UIImage(data: data!)
+            } else {
+                print(error?.localizedDescription as Any)
+            }
+        }
         
         return cell
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
+    @objc func refresh() {
+        
+        collectionView?.reloadData()
+        //停止刷新动画
+        refresher.endRefreshing()
     }
-    */
+    
+    func loadPosts() {
+        
+        let query = AVQuery(className: "Posts")
+        
+        //害，user?.username错误地写成了user，又是一次血的教训
+        query.whereKey("username", equalTo: user?.username)
+        query.limit = page
+        query.findObjectsInBackground { (objects:[Any]?, error:Error?) in
+            //查询成功
+            if error == nil {
+                //清空两个数组
+                self.postIdArray.removeAll(keepingCapacity: false)
+                self.postPictureArray.removeAll(keepingCapacity: false)
+                
+                for object in objects! {
+                    self.postIdArray.append((object as AnyObject).value(forKey: "postId") as! String)
+                    self.postPictureArray.append((object as AnyObject).value(forKey: "postPicture") as! AVFile)
+                }
+                
+                self.collectionView?.reloadData()
+            } else {
+                print(error?.localizedDescription as Any)
+            }
+        }
+    }
 
 }

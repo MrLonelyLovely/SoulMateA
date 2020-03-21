@@ -16,6 +16,7 @@
 		342C913A2425D1F000249094 /* StoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C91392425D1F000249094 /* StoryCell.swift */; };
 		34B2384524263AC0004EA669 /* MyDetailPageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2384424263AC0004EA669 /* MyDetailPageHeader.swift */; };
 		34B23847242643FD004EA669 /* MyPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B23846242643FD004EA669 /* MyPostCell.swift */; };
+		34B2384924266AF8004EA669 /* HisPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2384824266AF8004EA669 /* HisPostCell.swift */; };
 		34C278F824224E870027BFAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C278F724224E870027BFAE /* AppDelegate.swift */; };
 		34C278FA24224E870027BFAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C278F924224E870027BFAE /* SceneDelegate.swift */; };
 		34C278FC24224E870027BFAE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C278FB24224E870027BFAE /* ViewController.swift */; };
@@ -52,6 +53,7 @@
 		342C91392425D1F000249094 /* StoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCell.swift; sourceTree = "<group>"; };
 		34B2384424263AC0004EA669 /* MyDetailPageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDetailPageHeader.swift; sourceTree = "<group>"; };
 		34B23846242643FD004EA669 /* MyPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostCell.swift; sourceTree = "<group>"; };
+		34B2384824266AF8004EA669 /* HisPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HisPostCell.swift; sourceTree = "<group>"; };
 		34C278F424224E870027BFAE /* SoulMateA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoulMateA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C278F724224E870027BFAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34C278F924224E870027BFAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				34C279192422657E0027BFAE /* MatchCVCell.swift */,
 				34C279362423ABE80027BFAE /* HisDetailPageCVC.swift */,
 				34C279382423AD740027BFAE /* HisDetailPageHeader.swift */,
+				34B2384824266AF8004EA669 /* HisPostCell.swift */,
 			);
 			path = "匹配";
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 			files = (
 				34C2791F2422657E0027BFAE /* MyTabBarController.swift in Sources */,
 				34C2792F242265D30027BFAE /* Utilities.swift in Sources */,
+				34B2384924266AF8004EA669 /* HisPostCell.swift in Sources */,
 				342C912A2424F89200249094 /* UploadVC.swift in Sources */,
 				34C2791D2422657E0027BFAE /* MineVC.swift in Sources */,
 				34C2791B2422657E0027BFAE /* MatchCVC.swift in Sources */,

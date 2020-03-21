@@ -14,7 +14,6 @@ class MatchCVCell: UICollectionViewCell {
     
     @IBOutlet weak var contryNameLabel: UILabel!
     
-    
     func configure(with contryName: String) {
         contryNameLabel.text = contryName
     }
