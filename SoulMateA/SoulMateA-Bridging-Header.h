@@ -3,3 +3,4 @@
 //
 
 #import <AVOSCloud.h>
+#include "UIImageView+WebCache.h"

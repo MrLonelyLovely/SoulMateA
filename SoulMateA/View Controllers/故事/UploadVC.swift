@@ -20,11 +20,16 @@ class UploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         
         super.viewDidLoad()
 
+        uploadButton.isEnabled = false
+        
         let imgTap = UITapGestureRecognizer(target: self, action: #selector(selectImage))
         imgTap.numberOfTapsRequired = 1
         imgTap.numberOfTouchesRequired = 1
         postPictureImageView.isUserInteractionEnabled = true
         postPictureImageView.addGestureRecognizer(imgTap)
+        
+        
+        
         
     }
     
@@ -33,7 +38,7 @@ class UploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         let imageTaker = UIImagePickerController()
                 imageTaker.delegate = self
                 
-        //        let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
+        // let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
         let actionSheet = UIAlertController()
                 
         actionSheet.addAction(UIAlertAction(title: "拍摄", style: .default, handler: {(action:UIAlertAction) in
@@ -70,6 +75,11 @@ class UploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         postObject["user"] = AVUser.current()
         postObject["username"] = AVUser.current()?.username
         
+        postObject["headImage"] = AVUser.current()?.value(forKey: "avaHeadImage") as! AVFile
+        
+        //设置每个帖子的唯一id
+        postObject["postId"] = "\(String(describing: AVUser.current()?.username!)) \(NSUUID().uuidString)"
+        
         if postTextTextFiled.text!.isEmpty {
             postObject["title"] = ""
         } else {
@@ -87,40 +97,12 @@ class UploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             }
         }
         
-//        if segue.identifier == "upload" {
-//
-//            //隐藏键盘
-//            self.view.endEditing(true)
-//
-//            let postObject = AVObject(className: "Posts")
-//            postObject["user"] = AVUser.current()
-//            postObject["username"] = AVUser.current()?.username
-//
-//            if postTextTextFiled.text!.isEmpty {
-//                postObject["title"] = ""
-//            } else {
-//                postObject["title"] = postTextTextFiled.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-//            }
-//
-//            let avaData = postPictureImageView.image?.jpegData(compressionQuality: 0.5)
-//            let avaFile = AVFile(name: "postPicture.jpg", data: avaData!)
-//            postObject["postPicture"] = avaFile
-//
-//            //将数据存到LC云端
-//            postObject.saveInBackground { (success:Bool, error:Error?) in
-//                if error == nil {
-//                    //将TabBar控制器中索引值为0的子控制器，显示在手机屏幕上
-//                    //self.tabBarController!.selectedIndex = 3
-//                    print("upload successed!")
-//                }
-//            }
-//        }
     }
     
     
     
     
-    
+    /*
     @IBAction func uploadButtonTapped(_ sender: Any) {
         
 //        let user = AVUser.current()
@@ -155,14 +137,7 @@ class UploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         }
         
     }
-    
-    //                let alert = UIAlertController(title: "Oops!!!", message: "该用户名已被注册，请使用其他的用户名!", preferredStyle: .alert)
-    //                let ok = UIAlertAction(title: "好的惹", style: .cancel) { (action) in
-    //                    self.userNameTextField.text = nil
-    //                    self.passwordTextField.text = nil
-    //                }
-    //                alert.addAction(ok)
-    
+        */
     
     //紧接着（配合）takePicButton使用，否则点击图片后返回空值
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -173,20 +148,15 @@ class UploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         postPictureImageView.image = selectedImg
         
         picker.dismiss(animated: true, completion: nil)
+        
+        uploadButton.isEnabled = true
+
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }

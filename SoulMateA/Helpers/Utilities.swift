@@ -52,4 +52,24 @@ class Utilities {
         img.clipsToBounds = true
     }
     
+    
+    /// 比较两个图片是否相同, 这里比较尺寸为20*20
+    ///
+    /// - Parameters:
+    ///   - imageOne: 图片1
+    ///   - imageTwo: 图片2
+    /// - Returns: 是否相同的布尔值
+//    func isEqualImage(imageOne: UIImage, imageTwo: UIImage) -> Bool {
+//        var equalResult = false
+//        let mImageOne = self.getGrayImage(sourceImage: self.scaleToSize(img: imageOne, size: CGSize(width: 20, height: 20)))
+//        let mImageTwo = self.getGrayImage(sourceImage: self.scaleToSize(img: imageTwo, size: CGSize(width: 20, height: 20)))
+//        let diff = self.getDifferentValueCountWithString(str1: self.pHashValueWithImage(image: mImageOne), str2: self.pHashValueWithImage(image: mImageTwo))
+//        print(diff)
+//        if diff > 10 {
+//            equalResult = false
+//        } else {
+//            equalResult = true
+//        }
+//        return equalResult
+//    }
 }
