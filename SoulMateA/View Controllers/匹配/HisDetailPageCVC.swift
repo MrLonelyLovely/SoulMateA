@@ -31,9 +31,9 @@ class HisDetailPageCVC: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         //设置refresher控件到集合视图中
-        refresher = UIRefreshControl()
-        refresher.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
-        collectionView?.addSubview(refresher)
+//        refresher = UIRefreshControl()
+//        refresher.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
+//        collectionView?.addSubview(refresher)
         
         loadPosts()
     }
@@ -95,12 +95,12 @@ class HisDetailPageCVC: UICollectionViewController {
         return cell
     }
     
-    @objc func refresh() {
-        
-        collectionView?.reloadData()
-        //停止刷新动画
-        refresher.endRefreshing()
-    }
+//    @objc func refresh() {
+//
+//        collectionView?.reloadData()
+//        //停止刷新动画
+//        refresher.endRefreshing()
+//    }
     
     func loadPosts() {
         
