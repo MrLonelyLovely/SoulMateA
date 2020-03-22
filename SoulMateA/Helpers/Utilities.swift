@@ -34,6 +34,13 @@ class Utilities {
         button.tintColor = UIColor.white
     }
     
+    static func styleFilledButtonRed(_ button:UIButton) {
+        
+        button.backgroundColor = UIColor.init(red: 251/255, green: 153/255, blue: 102/255, alpha: 1)
+        button.layer.cornerRadius = 25.0
+        button.tintColor = UIColor.white
+    }
+    
     static func styleHollowButton(_ button:UIButton) {
         
         //空心按钮
