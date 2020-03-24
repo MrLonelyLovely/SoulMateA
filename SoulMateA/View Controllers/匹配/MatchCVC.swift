@@ -38,7 +38,14 @@ class MatchCVC: UICollectionViewController {
                 
                 self.matchArray.removeAll(keepingCapacity: false)
                 
-                self.matchArray = objects! as! [AVUser]
+//                self.matchArray = objects! as! [AVUser]
+                let user = AVUser.current()
+                
+                for object in objects! {
+                    if user != object as? AVUser {
+                        self.matchArray.append(object as! AVUser)
+                    }
+                }
                 print("matchArray Number: \(self.matchArray.count)")
 //                matchArrayA = self.matchArray
 //                for object in objects! {

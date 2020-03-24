@@ -29,19 +29,28 @@ class ModifyUsernameVC: UIViewController {
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         
-        /*
+        
         let user = AVUser.current()
         user?.username = newUsernameTextField.text!
 //        user?.save()
         user?.saveInBackground()
         
-        let alert = UIAlertController(title: "Yeah", message: "修改昵称成功", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Yeah", message: "修改昵称成功，请重新登录", preferredStyle: .alert)
         let ok = UIAlertAction(title: "好的", style: .cancel) { (action) in
-            self.dismiss(animated: true, completion: nil)
+//            self.dismiss(animated: true, completion: nil)
+            self.transitionToLoginPage()
         }
         alert.addAction(ok)
         self.present(alert, animated: true, completion: nil)
- */
+ 
+    }
+    
+    
+    func transitionToLoginPage() {
+        
+        let loginVC = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.loginVC) as! LoginVC
+        view.window?.rootViewController = loginVC
+        view.window?.makeKeyAndVisible()
     }
     
     /*
