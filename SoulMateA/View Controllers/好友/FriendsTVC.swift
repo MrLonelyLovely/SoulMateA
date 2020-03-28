@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import AVOSCloudIM
+
+var willChatUser:AVUser?
 
 class FriendsTVC: UITableViewController {
 
@@ -17,6 +20,8 @@ class FriendsTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        self.hidesBottomBarWhenPushed = true
+        
         tableView.rowHeight = 67
         
         //异步进程实现顺序执行
@@ -131,6 +136,23 @@ class FriendsTVC: UITableViewController {
     }
     
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        
+        willChatUser = friendsArray[indexPath.row]
+        
+    }
+    
+    //这样跳转的话会报错：cell未注册
+    func transitionToChatRoomTVC() {
+        
+        let chatRoomVC = ChatRoomVC()
+        
+        self.navigationController?.pushViewController(chatRoomVC, animated: true)
+        
+    }
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

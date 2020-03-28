@@ -8,6 +8,7 @@
 
 import UIKit
 import AVOSCloud
+import AVOSCloudIM
 
 class LoginVC: UIViewController {
 
@@ -60,6 +61,13 @@ class LoginVC: UIViewController {
                 
                 print("登陆成功: ",user!)
                 
+                // 以 AVUser 实例创建了一个 client
+//                var client = AVIMClient(user: user!)
+//
+//                // 打开 client，与云端进行连接
+//                client.open { (success:Bool, error:Error?) in
+//
+//                }
                 self.transitiontoHome()
             } else {
                 let alert = UIAlertController(title: "Oops!!!", message: "账号或密码错误，请重新输入", preferredStyle: .alert)

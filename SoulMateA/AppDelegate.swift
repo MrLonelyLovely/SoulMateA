@@ -8,6 +8,7 @@
 
 import UIKit
 import AVOSCloud
+import LeanCloud
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
