@@ -45,6 +45,9 @@ class StoryTVC: UITableViewController{
         
         loadPosts()
         
+        //设置当StoryTVC接收到liked通知后，执行refresh方法
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name.init(rawValue: "liked"), object: nil)
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -270,6 +273,10 @@ class StoryTVC: UITableViewController{
         let uploadVCView = unwindSegue.source as! UploadVC
         
         
+    }
+    
+    @objc func refresh() {
+        self.tableView.reloadData()
     }
     
     /*

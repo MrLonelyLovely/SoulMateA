@@ -53,18 +53,8 @@ class ChatRoomVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
 
         concurrentQueue.async {
             self.loadHistoryMessage()
-//            print(self.messageArray.count)
-//            print("消息的条数：\(self.messageArray.count)")
         }
-        
-        
-        
-        
-//        print("客户端ID是：\(userClient.clientId)")
-//        print("最近会话ID是：\(currentConversation?.conversationId)")
-//        cell.update(with: messageArray[indexPath.row])
-        
-//        sendMessageButtonTapped((Any).self)
+
     }
     
 
@@ -111,7 +101,6 @@ class ChatRoomVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return messageContenArray.count
         return messageArray.count
     }
     
@@ -124,37 +113,6 @@ class ChatRoomVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatRoomCell", for: indexPath) as! ChatRoomCell
         
-//        mainQueueExecuting {
-//            var originBottomIndexPath: IndexPath?
-//            if !self.messageArray.isEmpty {
-//                originBottomIndexPath = IndexPath(row: self.messageArray.count - 1, section: 0)
-//            }
-//            self.messages.append(message)
-//            let indexPath = IndexPath(row: self.messageArray.count - 1, section: 0)
-//            self.tableView.insertRows(at: [indexPath], with: .bottom)
-//            if
-//                let bottomIndexPath = originBottomIndexPath,
-//                let bottomCell = self.tableView.cellForRow(at: bottomIndexPath),
-//                self.tableView.visibleCells.contains(bottomCell)
-//            {
-//                self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-//            }
-//        }
-        
-//        var originBottomIndexPath: IndexPath?
-//        if !self.messageArray.isEmpty {
-//            originBottomIndexPath = IndexPath(row: self.messageArray.count - 1, section: 0)
-//        }
-//        let indexPath = IndexPath(row: self.messageArray.count - 1, section: 0)
-//        self.tableView.insertRows(at: [indexPath], with: .bottom)
-//        if
-//            let bottomIndexPath = originBottomIndexPath,
-//            let bottomCell = self.tableView.cellForRow(at: bottomIndexPath),
-//            self.tableView.visibleCells.contains(bottomCell)
-//        {
-//            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-//        }
-//
         cell.update(with: messageArray[indexPath.row])
         
         //设置左边用户的头像
@@ -210,8 +168,7 @@ class ChatRoomVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     func loadHistoryMessage() {
         //在云端查询历史消息记录
         let currentUser = AVUser.current()
-                 
-        
+
         userClient.open { (success:Bool, error:Error?) in
             if success {
 
@@ -224,15 +181,8 @@ class ChatRoomVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
                     if error == nil && conversations != nil {
                         
                         for conversation in conversations!  {
-                            
-//                            print("对话ID是：")
-//                            print((conversation as! AVIMConversation).conversationId)
                             (conversation as! AVIMConversation).queryMessagesFromServer(withLimit: 20) { (messages:[Any]?, error:Error?) in
                                 self.messageArray = messages! as! [AVIMTextMessage]
-//                                for message in self.messageArray {
-//                                    print("消息内容是：\(message.text)")
-//                                }
-//                                print("消息有：\(self.messageArray)")
                                 self.tableView.reloadData()
                             }
                         }
@@ -246,180 +196,7 @@ class ChatRoomVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         }
         
     }
-                /*
-                       query.whereKey("attr.fromUser", equalTo: (currentUser?.username)!)
-//                query.whereKey("attr.fromUser", contains: (currentUser?.username)!)
-//                query.whereKey("attr.toUser", contains: (willChatUser?.username)!)
-                        query.whereKey("attr.toUser", equalTo: (willChatUser?.username)!)
-//                query.addDescendingOrder("createAt")
-                query.addAscendingOrder("createAt")
-        //                query.
-                query.findConversations { (conversations:[Any]?, error:Error?) in
-                        if error == nil {
-                            print("对话条数是：")
-                            print(conversations?.count)
-                            self.messageContenArray.removeAll(keepingCapacity: false)
-                            for conversation in conversations! {
-                                self.messageContenArray.append(((conversation as? AVIMConversation)?.attributes!["messageContent"] as? String)!)
-                            }
-                            DispatchQueue.main.async(execute: {
-                                self.tableView.reloadData()
-                            })
-                        }
-                    print(self.messageContenArray)
-                    }
-*/
-                
-    //        let query = AVQuery(className: "_Conversation")
-    //        client.conversationQuery()
-    //        client.conversation(with: AVIMKeyedConversation.creator)
-            
-        
-        
     
-
 }
 
 
-//                query.whereKey("attr.fromUser", equalTo: (currentUser?.username)!)
-//                query.whereKey("attr.fromUser", contains: (currentUser?.username)!)
-//                query.whereKey("attr.toUser", contains: (willChatUser?.username)!)
-//                query.whereKey("attr.toUser", equalTo: (willChatUser?.username)!)
-//                query.addDescendingOrder("createAt")
-//                query.
-                
-//                query.findConversations { (conversations:[Any]?, error:Error?) in
-//                    if error == nil {
-//                        print("对话条数是：")
-//                        print(conversations?.count)
-//                        for conversation in conversations! {
-//                            cell.messageTextContentLabel.text = (conversation as? AVIMConversation)?.attributes!["messageContent"] as? String
-//                        }
-//                    }
-//                }
-
-
-//                client.conversation(forId: "5e7b2cec90aef5aa8438b50c")?.queryMessages(withLimit: 10, callback: { (objects:[Any]?, error:Error?) in
-//                    if error == nil {
-//                        for object in objects! {
-//                            cell.update(with: object as! AVIMMessage)
-//                            print("获取消息成功！")
-//                        }
-//
-//                    } else {
-//                        print("错误是如下：")
-//                        print(error?.localizedDescription as Any)
-//                    }
-//                })
-
-
-
-
-//cell里的代码
-
-//                client.conversation(with: AVIMKeyedConversation)
-//                client.conversationQuery()
-                //options: AVIMConversationOption.unique 或者 options: AVIMConversationOption(rawValue: 1)
-
-//        print("消息的条数：\(messageArray.count)")
-//        cell.update(with: messageArray[indexPath.row])
-        
-        // 打开 client，与云端进行连接 AVIMMessage
-//        userClient.open { (success:Bool, error:Error?) in
-//            if success {
-//                print("对话ID是：\(self.currentConversation?.conversationId)")
-////                self.currentConversation?.queryMessagesFromServer(withLimit: 10, callback: { (messages:[Any]?, error:Error?) in
-////                    if error == nil {
-////                        print("消息条数是：\(messages?.count)")
-////                        for message in messages! {
-////                            cell.update(with: message as! AVIMTypedMessage)
-////                        }
-////                    } else {
-////                        print("消息查询的错误是：\(error?.localizedDescription as Any)")
-////                    }
-////                })
-//            }
-//            else {
-//                print("试图打开client的错误是：\(error?.localizedDescription as Any)")
-//            }
-//        }
-        
-        
-        
-//        cell.messageTextContentLabel.text = messageContenArray[indexPath.row]
-//        print(messageContenArray[indexPath.row])
-        
-        /*
-        //在云端查询历史消息记录
-        let currentUser = AVUser.current()
-         
-        // 以 AVUser 实例创建了一个 client
-        let client = AVIMClient(user: currentUser!)
-        client.open { (success:Bool, error:Error?) in
-            if success {
-                let query = client.conversationQuery()
-                
-                query.getConversationById("5e7c3507678c2e0075ef3c72") { (conversation:AVIMConversation?, error:Error?) in
-                    if conversation != nil {
-//                        let message = conversation?.lastMessage as? AVIMTypedMessage
-                        conversation?.queryMessages(withLimit: 10, callback: { (messages:[Any]?, error:Error?) in
-                            if error == nil {
-                                for message in messages! {
-                                    print((message as? AVIMTypedMessage)!.text!)
-                                    self.navigationItem.title = conversation?.name
-                                    cell.messageFromLabel.text = conversation?.attributes!["toUser"] as? String
-                                    
-                                    cell.update(with: (message as? AVIMTypedMessage)!)
-                                }
-                            } else {
-                                print(error?.localizedDescription as Any)
-                            }
-                            } as! AVIMArrayResultBlock)
-                        
-                        
-                    } else {
-                        print(error?.localizedDescription as Any)
-                    }
-                }
-            }
-        }
-        */
-
-
-
-
-
-//        cell.leftHeadImageView.image = UIImage(named: "1.png")
-        //在云端查询历史消息记录
-//        let currentUser = AVUser.current()
-//
-//
-//        userClient.open { (success:Bool, error:Error?) in
-//            if success {
-//                //client.messageQueryCacheEnabled = false
-//                let usersArray:[String] = [currentUser!.username!,willChatUser!.username!]
-//
-//                let query = userClient.conversationQuery()
-//                query.whereKey("m", containsAllObjectsIn: usersArray)
-//
-//                query.findConversations { (conversations:[Any]?, error:Error?) in
-//                    if error == nil && conversations != nil {
-//                        for conversation in conversations!  {
-//        //                            print("对话ID是：")
-//        //                            print((conversation as! AVIMConversation).conversationId)
-//                                    (conversation as! AVIMConversation).queryMessagesFromServer(withLimit: 10) { (messages:[Any]?, error:Error?) in
-//                                        self.messageArray = messages! as! [AVIMTextMessage]
-////                                        print("消息有：\(self.messageArray)")
-//                                        for message in self.messageArray {
-//                                            cell.update(with: message)
-//                                        }
-//                                    }
-//                                }
-//                            } else {
-//                                print("尝试查找对话时的错误是： \(error?.localizedDescription as Any)")
-//                            }
-//                        }
-//                    } else {
-//                        print("尝试打开client时的错误是： \(error?.localizedDescription as Any)")
-//                    }
-//                }

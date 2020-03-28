@@ -15,6 +15,22 @@ class MessageListTVC: UITableViewController {
 
         tableView.rowHeight = 67
         
+        //异步进程实现顺序执行
+        let concurrentQueue = DispatchQueue(label: "com.cp.concurrent", attributes: .concurrent)
+        concurrentQueue.async {
+            self.setUpConversation()
+        }
+
+        concurrentQueue.async(flags: .barrier, execute: {
+            
+            sleep(1)
+            
+        })
+
+        concurrentQueue.async {
+            self.loadLastMessage()
+        }
+        
     }
 
     // MARK: - Table view data source
@@ -33,12 +49,25 @@ class MessageListTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageCell
 
-        
+//        let leftAvaQuery = willChatUser!.object(forKey: "avaHeadImage") as! AVFile
+//        leftAvaQuery.getDataInBackground { (data: Data?, error: Error?) in
+//            if data == nil {
+//                print(error?.localizedDescription as Any)
+//            } else {
+//                cell.headImageView.image = UIImage(data: data!)
+//            }
+//        }
 
         return cell
     }
     
+    func setUpConversation() {
+        
+    }
 
+    func loadLastMessage() {
+        
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
