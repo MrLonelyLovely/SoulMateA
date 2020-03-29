@@ -1,18 +1,31 @@
 //
-//  ChatRoomVC.swift
+//  ChatRoomVCFromMessList.swift
 //  SoulMateA
 //
-//  Created by Apui on 2020/3/25.
+//  Created by Apui on 2020/3/28.
 //  Copyright © 2020 陈沛. All rights reserved.
 //
+
+//import UIKit
+//
+//class ChatRoomVCFromMessList: UIViewController {
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//
+//    }
+//
+//}
+
 
 import UIKit
 import AVOSCloudIM
 
-let userClient:AVIMClient = AVIMClient(clientId: AVUser.current()!.username!)
+//let userClientFromMessList:AVIMClient = AVIMClient(clientId: AVUser.current()!.username!)
 
 
-class ChatRoomVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
+class ChatRoomVCFromMessList: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     
     var messageContenArray = [String]()
     var messageArray = [AVIMTextMessage]()
@@ -36,7 +49,7 @@ class ChatRoomVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         //异步进程实现顺序执行
         let concurrentQueue = DispatchQueue(label: "com.cp.concurrent", attributes: .concurrent)
         concurrentQueue.async {
-            self.setUpConversation()
+//            self.setUpConversation()
         }
 
         concurrentQueue.async(flags: .barrier, execute: {
@@ -58,7 +71,7 @@ class ChatRoomVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         
         userClient.open { (success:Bool, error:Error?) in
             if success {
-                let usersArray:[String] = [currentUser!.username!,willChatUser!.username!]
+                let usersArray:[String] = [currentUser!.username!,wantChatUser!.username!]
                         
                 let query = userClient.conversationQuery()
                 query.whereKey("m", containsAllObjectsIn: usersArray)
@@ -110,7 +123,7 @@ class ChatRoomVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         cell.update(with: messageArray[indexPath.row])
         
         //设置左边用户的头像
-        let leftAvaQuery = willChatUser!.object(forKey: "avaHeadImage") as! AVFile
+        let leftAvaQuery = wantChatUser!.object(forKey: "avaHeadImage") as! AVFile
         leftAvaQuery.getDataInBackground { (data: Data?, error: Error?) in
             if data == nil {
                 print(error?.localizedDescription as Any)
@@ -139,10 +152,10 @@ class ChatRoomVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         userClient.open { (success:Bool, error:Error?) in
             if error == nil {
                 //创建会话
-                userClient.createConversation(withName: (willChatUser?.username)!, clientIds: [(willChatUser?.username)!], attributes: ["fromUser":(currentUser?.username)!,"toUser":(willChatUser?.username)!,"messageContent":"-"], options: AVIMConversationOption.unique) { (conversation:AVIMConversation?, error:Error?) in
+                userClient.createConversation(withName: (wantChatUser?.username)!, clientIds: [(wantChatUser?.username)!], attributes: ["fromUser":(currentUser?.username)!,"toUser":(wantChatUser?.username)!,"messageContent":"-"], options: AVIMConversationOption.unique) { (conversation:AVIMConversation?, error:Error?) in
                     if error == nil {
                         mainQueueExecuting {
-                            self.navigationItem.title = willChatUser?.username
+                            self.navigationItem.title = wantChatUser?.username
                         }
                         
                         //可以在这里查询历史消息记录吗？
@@ -166,7 +179,7 @@ class ChatRoomVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         userClient.open { (success:Bool, error:Error?) in
             if success {
 
-                let usersArray:[String] = [currentUser!.username!,willChatUser!.username!]
+                let usersArray:[String] = [currentUser!.username!,wantChatUser!.username!]
                 
                 let query = userClient.conversationQuery()
                 query.whereKey("m", containsAllObjectsIn: usersArray)

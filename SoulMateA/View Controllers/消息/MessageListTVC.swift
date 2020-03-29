@@ -7,14 +7,25 @@
 //
 
 import UIKit
+import AVOSCloudIM
+
+var wantChatUser:AVUser?
 
 class MessageListTVC: UITableViewController {
 
+//    var wantChatUser = willChatUser
+    var wantChatUsername:String?
+    
+    var conversations = [AVIMConversation]()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.rowHeight = 67
         
+        print("将要聊天的用户是：\(willChatUser?.username)")
+        print("当前用户clientid是：\(userClient.clientId)")
         //异步进程实现顺序执行
         let concurrentQueue = DispatchQueue(label: "com.cp.concurrent", attributes: .concurrent)
         concurrentQueue.async {
@@ -28,7 +39,8 @@ class MessageListTVC: UITableViewController {
         })
 
         concurrentQueue.async {
-            self.loadLastMessage()
+//            self.loadLastMessage()
+            print("对话条数是：\(self.conversations.count)")
         }
         
     }
@@ -42,27 +54,88 @@ class MessageListTVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return conversations.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageCell
 
-//        let leftAvaQuery = willChatUser!.object(forKey: "avaHeadImage") as! AVFile
-//        leftAvaQuery.getDataInBackground { (data: Data?, error: Error?) in
-//            if data == nil {
-//                print(error?.localizedDescription as Any)
-//            } else {
-//                cell.headImageView.image = UIImage(data: data!)
-//            }
-//        }
+        cell.lastMessageContentLabel.text = (conversations[indexPath.row].lastMessage as! AVIMTextMessage).text
+        
+        //(conversation as? AVIMConversation)?.attributes!["messageContent"] as? String
+        if conversations[indexPath.row].attributes!["toUser"] as? String == AVUser.current()?.username {
+            cell.usernameLabel.text = conversations[indexPath.row].attributes!["fromUser"] as? String
+            
+        } else {
+            cell.usernameLabel.text = conversations[indexPath.row].attributes!["toUser"] as? String
+        }
+        wantChatUsername = cell.usernameLabel.text
+        
+        let userQuery = AVQuery(className: "_User")
+        userQuery.whereKey("username", equalTo: wantChatUsername!)
+        let user = userQuery.getFirstObject()
+        let leftAvaQuery = user!.object(forKey: "avaHeadImage") as! AVFile
+        leftAvaQuery.getDataInBackground { (data: Data?, error: Error?) in
+            if data == nil {
+                print(error?.localizedDescription as Any)
+            } else {
+                cell.headImageView.image = UIImage(data: data!)
+            }
+        }
 
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if conversations[indexPath.row].attributes!["toUser"] as? String == AVUser.current()?.username {
+            wantChatUsername = conversations[indexPath.row].attributes!["fromUser"] as? String
+            
+        } else {
+            wantChatUsername = conversations[indexPath.row].attributes!["toUser"] as? String
+        }
+        
+        let userQuery = AVQuery(className: "_User")
+        userQuery.whereKey("username", equalTo: wantChatUsername!)
+        let user = userQuery.getFirstObject()
+        wantChatUser = user as? AVUser
+    }
+    
     func setUpConversation() {
         
+        let currentUser = AVUser.current()
+
+        userClient.open { (success:Bool, error:Error?) in
+            if success {
+
+//                let usersArray:[String] = [currentUser!.username!,willChatUser!.username!]
+                
+                let queryA = userClient.conversationQuery()
+                let queryB = userClient.conversationQuery()
+                queryA.whereKey("attr.fromUser", equalTo: (currentUser?.username)!)
+                queryB.whereKey("attr.toUser", equalTo: (currentUser?.username)!)
+//                let query = AVQuery.orQuery(withSubqueries: [queryA,queryB])
+                let query = AVIMConversationQuery.orQuery(withSubqueries: [queryA,queryB])
+//                query.whereKey("m", containsAllObjectsIn: usersArray)
+                
+                query.findConversations { (conversations:[Any]?, error:Error?) in
+                    if error == nil && conversations != nil {
+                        self.conversations = conversations as! [AVIMConversation]
+                        self.tableView.reloadData()
+//                        for conversation in conversations!  {
+//                            self.conversations.append(conversation as! AVIMConversation)
+//                        }
+                    } else {
+                        print("尝试查找对话时的错误是： \(error?.localizedDescription as Any)")
+                    }
+                }
+            } else {
+                print("尝试打开client时的错误是： \(error?.localizedDescription as Any)")
+            }
+        }
+
     }
 
     func loadLastMessage() {
