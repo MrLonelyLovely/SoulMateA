@@ -22,6 +22,10 @@
 		3494B454242AFD980079BB98 /* avatar-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3494B453242AFD980079BB98 /* avatar-default.png */; };
 		3494B456242B0AC90079BB98 /* ChatRoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3494B455242B0AC90079BB98 /* ChatRoomCell.swift */; };
 		349F1C79242F898900F1F45B /* ChatRoomVCFromMessList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349F1C78242F898900F1F45B /* ChatRoomVCFromMessList.swift */; };
+		349F1C7C24304AF100F1F45B /* CommentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349F1C7B24304AF100F1F45B /* CommentsVC.swift */; };
+		349F1C7E24304B1D00F1F45B /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349F1C7D24304B1D00F1F45B /* CommentCell.swift */; };
+		349F1C802430BC6100F1F45B /* FollowersTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349F1C7F2430BC6100F1F45B /* FollowersTVC.swift */; };
+		349F1C822430BC8000F1F45B /* FollowersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349F1C812430BC8000F1F45B /* FollowersCell.swift */; };
 		34B2384524263AC0004EA669 /* MyDetailPageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2384424263AC0004EA669 /* MyDetailPageHeader.swift */; };
 		34B23847242643FD004EA669 /* MyPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B23846242643FD004EA669 /* MyPostCell.swift */; };
 		34B2384924266AF8004EA669 /* HisPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2384824266AF8004EA669 /* HisPostCell.swift */; };
@@ -71,6 +75,10 @@
 		3494B453242AFD980079BB98 /* avatar-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar-default.png"; sourceTree = "<group>"; };
 		3494B455242B0AC90079BB98 /* ChatRoomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomCell.swift; sourceTree = "<group>"; };
 		349F1C78242F898900F1F45B /* ChatRoomVCFromMessList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomVCFromMessList.swift; sourceTree = "<group>"; };
+		349F1C7B24304AF100F1F45B /* CommentsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsVC.swift; sourceTree = "<group>"; };
+		349F1C7D24304B1D00F1F45B /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		349F1C7F2430BC6100F1F45B /* FollowersTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersTVC.swift; sourceTree = "<group>"; };
+		349F1C812430BC8000F1F45B /* FollowersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersCell.swift; sourceTree = "<group>"; };
 		34B2384424263AC0004EA669 /* MyDetailPageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDetailPageHeader.swift; sourceTree = "<group>"; };
 		34B23846242643FD004EA669 /* MyPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostCell.swift; sourceTree = "<group>"; };
 		34B2384824266AF8004EA669 /* HisPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HisPostCell.swift; sourceTree = "<group>"; };
@@ -137,6 +145,15 @@
 				3448DCC92427C3AB00542A95 /* ModifyUsernameVC.swift */,
 			);
 			path = "设置";
+			sourceTree = "<group>";
+		};
+		349F1C7A2430419300F1F45B /* 评论 */ = {
+			isa = PBXGroup;
+			children = (
+				349F1C7B24304AF100F1F45B /* CommentsVC.swift */,
+				349F1C7D24304B1D00F1F45B /* CommentCell.swift */,
+			);
+			path = "评论";
 			sourceTree = "<group>";
 		};
 		34B2384A2426813C004EA669 /* 好友 */ = {
@@ -273,6 +290,8 @@
 				34C279142422657E0027BFAE /* MyDetailPageCVC.swift */,
 				34B2384424263AC0004EA669 /* MyDetailPageHeader.swift */,
 				34B23846242643FD004EA669 /* MyPostCell.swift */,
+				349F1C7F2430BC6100F1F45B /* FollowersTVC.swift */,
+				349F1C812430BC8000F1F45B /* FollowersCell.swift */,
 			);
 			path = "我的";
 			sourceTree = "<group>";
@@ -280,6 +299,7 @@
 		34C2793A2424C85D0027BFAE /* 故事 */ = {
 			isa = PBXGroup;
 			children = (
+				349F1C7A2430419300F1F45B /* 评论 */,
 				34C2793B2424CAF40027BFAE /* StoryTVC.swift */,
 				342C91392425D1F000249094 /* StoryCell.swift */,
 				342C91292424F89200249094 /* UploadVC.swift */,
@@ -434,6 +454,7 @@
 				34C2791F2422657E0027BFAE /* MyTabBarController.swift in Sources */,
 				349F1C79242F898900F1F45B /* ChatRoomVCFromMessList.swift in Sources */,
 				34546DBB242B2A7700627CC7 /* ChatRoomVC.swift in Sources */,
+				349F1C822430BC8000F1F45B /* FollowersCell.swift in Sources */,
 				3448DCC62427AC1A00542A95 /* ResetPswVC.swift in Sources */,
 				34C2792F242265D30027BFAE /* Utilities.swift in Sources */,
 				34B2384924266AF8004EA669 /* HisPostCell.swift in Sources */,
@@ -441,6 +462,7 @@
 				34C2791D2422657E0027BFAE /* MineVC.swift in Sources */,
 				34C2791B2422657E0027BFAE /* MatchCVC.swift in Sources */,
 				342C913A2425D1F000249094 /* StoryCell.swift in Sources */,
+				349F1C7C24304AF100F1F45B /* CommentsVC.swift in Sources */,
 				34C279232422657E0027BFAE /* MatchCVCell.swift in Sources */,
 				34C279372423ABE80027BFAE /* HisDetailPageCVC.swift in Sources */,
 				34C2791E2422657E0027BFAE /* MyDetailPageCVC.swift in Sources */,
@@ -450,12 +472,14 @@
 				34B2385124272D07004EA669 /* SearchUsersTVC.swift in Sources */,
 				34B2384E242681F6004EA669 /* friendCell.swift in Sources */,
 				34C279202422657E0027BFAE /* LoginVC.swift in Sources */,
+				349F1C7E24304B1D00F1F45B /* CommentCell.swift in Sources */,
 				34C2792E242265D30027BFAE /* Constants.swift in Sources */,
 				34C278FC24224E870027BFAE /* ViewController.swift in Sources */,
 				34B2384C242681D4004EA669 /* FriendsTVC.swift in Sources */,
 				34B2384524263AC0004EA669 /* MyDetailPageHeader.swift in Sources */,
 				34B23847242643FD004EA669 /* MyPostCell.swift in Sources */,
 				34C278F824224E870027BFAE /* AppDelegate.swift in Sources */,
+				349F1C802430BC6100F1F45B /* FollowersTVC.swift in Sources */,
 				34C279212422657E0027BFAE /* SignUpVC.swift in Sources */,
 				3448DCCA2427C3AB00542A95 /* ModifyUsernameVC.swift in Sources */,
 				34C278FA24224E870027BFAE /* SceneDelegate.swift in Sources */,

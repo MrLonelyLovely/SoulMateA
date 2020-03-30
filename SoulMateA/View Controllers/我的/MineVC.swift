@@ -26,6 +26,20 @@ class MineVC: UIViewController {
 
         setUpElements()
         
+        //单击关注者（粉丝）数
+        let followersNumBerTap = UITapGestureRecognizer(target: self, action: #selector(followersNumberTapM))
+        followersNumBerTap.numberOfTapsRequired = 1
+        followersNumBerTap.numberOfTouchesRequired = 1
+        fansNumberLabel.isUserInteractionEnabled = true
+        fansNumberLabel.addGestureRecognizer(followersNumBerTap)
+        
+        //单击关注数
+        let followingsNumberTap = UITapGestureRecognizer(target: self, action: #selector(followingsNumberTapM))
+        followingsNumberTap.numberOfTapsRequired = 1
+        followingsNumberTap.numberOfTouchesRequired = 1
+        followingNumberLabel.isUserInteractionEnabled = true
+        followingNumberLabel.addGestureRecognizer(followingsNumberTap)
+        
     }
     
     func setUpElements() {
@@ -90,6 +104,25 @@ class MineVC: UIViewController {
         }
     }
     
+    //响应单击关注者（粉丝）数
+    @objc func followersNumberTapM() {
+        //从故事板载入FollowersTVC的视图
+        let followers = self.storyboard?.instantiateViewController(withIdentifier: "FollowersTVC") as! FollowersTVC
+//        followers.user = (AVUser.current()?.username)!
+        followers.show = "粉丝"
+        
+        self.navigationController?.pushViewController(followers, animated: true)
+    }
+    
+    //响应单击关注数
+    @objc func followingsNumberTapM() {
+        //从故事板载入FollowersTVC的视图
+        let followings = self.storyboard?.instantiateViewController(withIdentifier: "FollowersTVC") as! FollowersTVC
+//        followings.user = (AVUser.current()?.username)!
+        followings.show = "关注"
+        
+        self.navigationController?.pushViewController(followings, animated: true)
+    }
     
     
     

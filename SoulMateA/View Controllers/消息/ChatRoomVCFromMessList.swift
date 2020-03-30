@@ -60,6 +60,7 @@ class ChatRoomVCFromMessList: UIViewController, UITableViewDelegate, UITableView
 
         concurrentQueue.async {
             self.loadHistoryMessage()
+            print("something")
         }
 
     }
@@ -84,6 +85,9 @@ class ChatRoomVCFromMessList: UIViewController, UITableViewDelegate, UITableView
                             (conversation as! AVIMConversation).send(message) { (success:Bool, error:Error?) in
                                 if success {
                                     self.loadHistoryMessage()
+                                    self.messageContentTextView.text = ""
+                                    //如果设置为喜爱，则发送通知给表格视图刷新表格
+                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateTheMessList"), object: nil)
                                 } else {
                                     print("尝试发送消息时的错误是： \(error?.localizedDescription as Any)")
                                 }
@@ -188,9 +192,10 @@ class ChatRoomVCFromMessList: UIViewController, UITableViewDelegate, UITableView
                     if error == nil && conversations != nil {
                         
                         for conversation in conversations!  {
-                            (conversation as! AVIMConversation).queryMessagesFromServer(withLimit: 20) { (messages:[Any]?, error:Error?) in
+                            (conversation as! AVIMConversation).queryMessagesFromServer(withLimit: 100) { (messages:[Any]?, error:Error?) in
                                 self.messageArray = messages! as! [AVIMTextMessage]
                                 self.tableView.reloadData()
+                                self.tableView.scrollToRow(at: IndexPath(row: self.messageArray.count - 1, section: 0), at: .bottom, animated: false)
                             }
                         }
                     } else {

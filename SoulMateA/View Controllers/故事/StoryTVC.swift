@@ -259,12 +259,33 @@ class StoryTVC: UITableViewController{
             cell.likeNumberLabel.text = "\(count)"
         }
         
+        //将indexPath赋值给commentButton的layer属性的自定义变量
+        cell.commentButton.layer.setValue(indexPath, forKey: "index")
+        
         return cell
     }
     
 
     @IBAction func cameraButtonTapped(_ sender: Any) {
    
+    }
+    
+    //!!!!!点击评论按钮跳转到评论界面，并将数据从帖子界面传到评论界面
+    @IBAction func commentButtonTapped(_ sender: Any) {
+        //按钮的index
+        let i = (sender as AnyObject).layer.value(forKey: "index") as! IndexPath
+        
+        //通过i获取到用户所单击的单元格
+        let cell = tableView.cellForRow(at: i) as! StoryCell
+        
+        //发送相关数据到全局变量
+        commentuuid.append(cell.postIdLabel.text!)
+        commentowner.append(cell.usernameLabel.text!)
+        
+        //需要在故事板中查看Storyboard ID是否设置
+        let comment = self.storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsVC
+        self.navigationController?.pushViewController(comment, animated: true)
+        
     }
     
     //MARK: - 暴风哭泣 这个方法不是写在UploadVC.swift文件中的，而是写在这里的！！！！！
